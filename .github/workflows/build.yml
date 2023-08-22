@@ -31,15 +31,17 @@ jobs:
     needs: prepare_release
     strategy:
       matrix:
-        BOARD: [hinlink-h66k, hinlink-h68k]
+        # BOARD: [hinlink-h66k, hinlink-h68k]
+        BOARD: [hinlink-h68k]
         DISTRO: [armbian]
-        FLAVOR: [ubuntu, cli]
+        # FLAVOR: [ubuntu, cli]
+        FLAVOR: [debian]
         BRANCH: [legacy]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Upload Armbian image
-        uses: amazingfate/armbian-compile-action@main
+        uses: pastor-robert/armbian-compile-action@main
         if: matrix.DISTRO == 'armbian'
         with:
           branch: ${{ matrix.BRANCH }}
